@@ -7,7 +7,7 @@
 #include "track.h"
 
 
-class BoTSORT
+class BOTSORT_EXPORT BoTSORT
 {
 public:
     explicit BoTSORT(const std::string &tracker_config_path,

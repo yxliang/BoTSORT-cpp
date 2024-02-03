@@ -1,8 +1,8 @@
 #pragma once
 
+#include <Eigen/Core>
+#include <Eigen/Dense>
 #include <cstdint>
-#include <eigen3/Eigen/Core>
-#include <eigen3/Eigen/Dense>
 #include <optional>
 #include <utility>
 #include <vector>

@@ -1,10 +1,10 @@
 #pragma once
-
 #include <deque>
 #include <memory>
 
 #include "KalmanFilter.h"
 #include "KalmanFilterAccBased.h"
+#include "botsort_export.h"
 
 using KalmanFilter = bot_kalman::KalmanFilter;
 
@@ -17,7 +17,7 @@ enum TrackState
     Removed
 };
 
-class Track
+class BOTSORT_EXPORT Track
 {
 public:
     /**

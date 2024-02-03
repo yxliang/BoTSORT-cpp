@@ -53,7 +53,7 @@ BoTSORT::BoTSORT(const std::string &tracker_config_path,
 std::vector<std::shared_ptr<Track>>
 BoTSORT::track(const std::vector<Detection> &detections, const cv::Mat &frame)
 {
-    PROFILE_FUNCTION();
+    //PROFILE_FUNCTION();
     ////////////////// CREATE TRACK OBJECT FOR ALL THE DETECTIONS //////////////////
     // For all detections, extract features, create tracks and classify on the segregate of confidence
     _frame_id++;

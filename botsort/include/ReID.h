@@ -28,7 +28,7 @@ private:
     inference_backend::TRTOptimizerParams _model_optimization_params;
     std::unique_ptr<inference_backend::TensorRTInferenceEngine>
             _trt_inference_engine;
-    u_int8_t _trt_logging_level;
+    uint8_t _trt_logging_level;
     cv::Size _input_size;
 
     std::string _onnx_model_path, _distance_metric;

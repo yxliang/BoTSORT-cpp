@@ -1,9 +1,11 @@
 #include "TRT_InferenceEngine/TensorRT_InferenceEngine.h"
 
+#include <filesystem>
+
 #include <NvOnnxParser.h>
 
 inference_backend::TensorRTInferenceEngine::TensorRTInferenceEngine(
-        TRTOptimizerParams &optimization_params, u_int8_t logging_level)
+        TRTOptimizerParams &optimization_params, uint8_t logging_level)
 {
     _set_optimization_params(optimization_params);
     _init_TRT_logger(logging_level);
@@ -27,7 +29,7 @@ void inference_backend::TensorRTInferenceEngine::_set_optimization_params(
 
 
 void inference_backend::TensorRTInferenceEngine::_init_TRT_logger(
-        u_int8_t logging_level)
+        uint8_t logging_level)
 {
     _logger = std::make_unique<TRTLogger>(
             static_cast<nvinfer1::ILogger::Severity>(logging_level));
@@ -85,19 +87,20 @@ bool inference_backend::TensorRTInferenceEngine::load_model(
     return false;
 }
 
-
+#include <Windows.h>
 std::string inference_backend::TensorRTInferenceEngine::get_engine_path(
         const std::string &onnx_model_path) const
 {
     // Parent director + model name
     std::string engine_path =
-            boost::filesystem::path(onnx_model_path).parent_path().string() +
-            "/" + boost::filesystem::path(onnx_model_path).stem().string();
+            std::filesystem::path(onnx_model_path).parent_path().string() +
+            "/" + std::filesystem::path(onnx_model_path).stem().string();
 
-    // Hostname
-    char hostname[1024];
-    gethostname(hostname, sizeof(hostname));
-    std::string suffix(hostname);
+    // Hostnamec
+    //char hostname[1024];
+    //gethostname(hostname, sizeof(hostname));
+    //std::string suffix(hostname);
+    std::string suffix;
 
     // TensorRT version
     suffix.append("_TRT" + std::to_string(NV_TENSORRT_VERSION));
@@ -128,7 +131,7 @@ std::string inference_backend::TensorRTInferenceEngine::get_engine_path(
 bool inference_backend::TensorRTInferenceEngine::file_exists(
         const std::string &name) const
 {
-    return boost::filesystem::exists(name);
+    return std::filesystem::exists(name);
 }
 
 
@@ -243,7 +246,7 @@ void inference_backend::TensorRTInferenceEngine::_allocate_buffers()
     }
 }
 
-
+#include <fstream>
 bool inference_backend::TensorRTInferenceEngine::_deserialize_engine(
         const std::string &engine_path)
 {
